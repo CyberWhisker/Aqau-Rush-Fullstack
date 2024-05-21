@@ -1,10 +1,10 @@
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
-import OnboardingImg from '../../assets/images/onboarding1.png'
+import OnboardingImg from '../../assets/images/onboarding2.png'
 import { globalStyles } from '../../styles/global'
 import Button from '../../components/Button'
 
-const Onboarding1 = () => {
+const Onboarding2 = () => {
   return (
     <View style={styles.container}>
         <Image source={OnboardingImg}/>
@@ -16,8 +16,8 @@ const Onboarding1 = () => {
         </View>
         <View style={styles.section3}>
           <View style={styles.progress}>
-            <View style={styles.active}></View>
             <View style={styles.bar1}></View>
+            <View style={styles.active}></View>
             <View style={styles.bar1}></View>
           </View>
         </View>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
       marginTop: 20
     },
     section2: {
-      marginTop: 20,
+      marginTop: 20
     },
     section3: {
       marginTop: 40
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Onboarding1
+export default Onboarding2
