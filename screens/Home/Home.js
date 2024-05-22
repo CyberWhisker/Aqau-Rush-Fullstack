@@ -30,7 +30,7 @@ export default function Home() {
                             <Button2>50% Off</Button2>
                         </View>
                         <View>
-                        <   Image source={HomeImg} style={{ width: 120, height: 120 }} />
+                        <Image source={HomeImg} style={{ width: 120, height: 120 }} />
                         </View>
                     </View>
                 </Card>
@@ -45,7 +45,7 @@ export default function Home() {
         <View style={{height: 400}}>
             <List />
         </View>
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, justifyContent: 'flex-end'}}>
             <BottomBar/>
         </View>
     </View>

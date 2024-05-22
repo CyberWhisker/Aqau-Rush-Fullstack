@@ -7,13 +7,19 @@ import Welcome from './screens/Welcome/Welcome';
 import Login from './screens/Auth/Login';
 import Register from './screens/Auth/Register';
 import Home from './screens/Home/Home';
+import Cart from './screens/Cart/Cart';
+import Checkout from './screens/Checkout/Checkout';
+import Test from './screens/Test';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import OrderSuccess from './screens/OrderSuccess/OrderSuccess';
+import Track from './screens/Track/Track';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Home/>
+    <GestureHandlerRootView style={styles.container}>
+      <Track />
       <StatusBar style="auto" />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
