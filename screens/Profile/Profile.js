@@ -19,7 +19,7 @@ export default function Profile() {
     <View style={{flex: 1}}>
         <TopBar>
             <AntDesign name="arrowleft" size={30} color="white" />
-            <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Track Order</Text>
+            <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Profile</Text>
             <Text></Text>
         </TopBar>
         <ScrollView>
