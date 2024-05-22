@@ -14,7 +14,7 @@ export default function Cart() {
         <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Shopping cart</Text>
         <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 15, color: 'white'}}>Edit</Text>
       </TopBar>
-      <View style={{height: 600}}>
+      <View style={{height: '65%'}}>
         <List/>
       </View>
       <Checkout/>

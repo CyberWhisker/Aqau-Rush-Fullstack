@@ -30,7 +30,7 @@ export default function Home() {
                             <Button2>50% Off</Button2>
                         </View>
                         <View>
-                        <Image source={HomeImg} style={{ width: 120, height: 120 }} />
+                            <Image source={HomeImg} style={{ width: 120, height: 120 }} />
                         </View>
                     </View>
                 </Card>
@@ -71,7 +71,7 @@ function List() {
                         </View>
                         <Text style={{fontSize: 15, fontWeight: 'bold'}}>₱ {item.price}.00</Text>
                     </View>
-                    <View style={{flex: 1}}>
+                    <View style={{flex: 1, justifyContent: 'flex-end'}}>
                         <Button2>Add to cart</Button2>
                     </View>
                 </View>
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
     },
     section1: {
         backgroundColor: '#6796DC',
-        padding: 30,
-        height: '40%',
+        padding: 20,
+        height: 350,
     },
     child1: {
         marginTop: 40,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     icon: {
         padding: 10,
         backgroundColor: 'white',
-        borderRadius: '100%'
+        borderRadius: 100
     },
     child2: {
         marginTop: 20,
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     card: {
-        marginTop: 40,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

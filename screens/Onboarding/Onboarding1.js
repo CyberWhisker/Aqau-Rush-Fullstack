@@ -32,13 +32,13 @@ const {height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 100,
+        paddingTop: 50,
         alignItems: 'center',
         paddingHorizontal: 20,
         height: height,
     },
     section1: {
-      marginTop: 20
+      marginTop: 10
     },
     section2: {
       marginTop: 20,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
       marginTop: 40
     },
     section4: {
-      marginTop: 150
+      marginTop: 100
     },
     bar1: {
       flex: 1,

@@ -1,24 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Onboarding1 from './screens/Onboarding/Onboarding1';
-import Onboarding2 from './screens/Onboarding/Onboarding2';
-import Onboarding3 from './screens/Onboarding/Onboarding3';
-import Welcome from './screens/Welcome/Welcome';
-import Login from './screens/Auth/Login';
-import Register from './screens/Auth/Register';
-import Home from './screens/Home/Home';
-import Cart from './screens/Cart/Cart';
-import Checkout from './screens/Checkout/Checkout';
-import Test from './screens/Test';
+import React, { useCallback } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import OrderSuccess from './screens/OrderSuccess/OrderSuccess';
-import Track from './screens/Track/Track';
+import { StatusBar } from 'expo-status-bar';
+import {
+  Track,
+  Welcome,
+  Onboarding1,
+  Onboarding2,
+  Onboarding3,
+  Login,
+  Register,
+  Home,
+  Cart,
+  OrderSuccess,
+  Checkout,
+  Order,
+  Profile
+} from './screens';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    'Poppins': require('./assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
+  if (fontError) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ color: 'red' }}>Error loading fonts.</Text>
+      </View>
+    );
+  }
+
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <Track />
-      <StatusBar style="auto" />
+    <GestureHandlerRootView style={styles.container} onLayout={onLayoutRootView}>
+      <Profile/>
     </GestureHandlerRootView>
   );
 }
@@ -26,6 +58,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
 });

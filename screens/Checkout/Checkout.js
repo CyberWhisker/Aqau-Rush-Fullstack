@@ -19,7 +19,7 @@ export default function Checkout() {
             <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Checkout</Text>
             <Text></Text>
         </TopBar>
-        <View style={{height: 300, borderBottomWidth: 5, borderColor: '#DADADA'}}>
+        <View style={{height: 200, borderBottomWidth: 5, borderColor: '#DADADA'}}>
             <List/>
         </View>
         <ScrollView>
@@ -117,7 +117,7 @@ function List() {
                         <View style={{ width: 70, shadowOpacity: 0.4, shadowOffset: {height: 0, width: 2}}}>
                             <View>
                                 <Image source={HomeItem} style={{borderRadius: 10}} />
-                                <View style={{borderRadius: '100%', backgroundColor: '#6796DC', position: 'absulote', top: -20, left: 1, width: '90%'}}>
+                                <View style={{borderRadius: 100, backgroundColor: '#6796DC', position: 'absulote', top: -20, left: 1, width: '90%'}}>
                                     <Text style={{textAlign: 'center', color: 'white', fontWeight: '600'}}>{item.size} L</Text>
                                 </View>
                             </View>
