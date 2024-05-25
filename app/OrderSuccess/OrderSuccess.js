@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SuccessImage from '../../assets/images/success.jpg';
 import Button from '../../components/Button';
+import { Link } from 'expo-router';
 
 export default function OrderSuccess() {
   return (
@@ -18,11 +19,15 @@ export default function OrderSuccess() {
         <View style={{marginTop: 20, paddingHorizontal: 20}}>
             <Text style={{textAlign: 'center', fontFamily: 'Poppins', fontWeight: '400', fontSize: 12, color: '#707070'}}>Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam Nonumy Eirmod Tempor Invidunt Ut.</Text>
         </View>
-        <View style={{marginTop: 20}}>
-            <Button>Continue Shopping</Button>
+        <View style={{marginTop: 20, justifyContent: 'center', flexDirection: 'row'}}>
+            <Link href={'/Home/Home'}>
+                <Button>Continue Shopping</Button>
+            </Link>
         </View>
         <View style={{marginTop: 20}}>
-            <Text style={{textAlign: 'center', fontFamily: 'Poppins', fontWeight: '700', fontSize: 20, color: '#707070'}}>Track Order</Text>
+            <Link href={'/Track/Track'}>
+                <Text style={{textAlign: 'center', fontFamily: 'Poppins', fontWeight: '700', fontSize: 20, color: '#707070'}}>Track Order</Text>
+            </Link>
         </View>
     </View>
   )

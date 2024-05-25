@@ -4,15 +4,16 @@ import React from 'react'
 export default function Button2(props) {
   return (
     <View style={styles.container}>
-        <Pressable style={styles.button}>
+        <View style={styles.button}>
             <Text style={styles.label}>{props.children}</Text>
-        </Pressable>
+        </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         width: '100%',
         alignItems: 'center',
     },

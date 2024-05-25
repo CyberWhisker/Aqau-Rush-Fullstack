@@ -1,33 +1,23 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
-
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import {
-  Track,
-  Welcome,
-  Onboarding1,
-  Onboarding2,
-  Onboarding3,
-  Login,
-  Register,
-  Home,
-  Cart,
-  OrderSuccess,
-  Checkout,
-  Order,
-  Profile
-} from './screens';
+import Onboarding1 from './Onboarding/Onboarding1';
+import Cart from './Cart/[id]';
+import Register from './Auth/Register';
+import Checkout from './Checkout/[id]';
+import Order from './Order/[id]';
+import Profile from './Profile/[id]';
+import Track from './Track/[id]';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
   const [fontsLoaded, fontError] = useFonts({
-    'Poppins': require('./assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
+    'Poppins': require('../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -50,7 +40,8 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={styles.container} onLayout={onLayoutRootView}>
-      <Profile/>
+        {/* <Onboarding1/> */}
+        <Order/>
     </GestureHandlerRootView>
   );
 }

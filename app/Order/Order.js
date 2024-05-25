@@ -7,6 +7,7 @@ import Data from './data.json'
 import { FontAwesome6, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import HomeItem from '../../assets/images/item.jpg';
 import BottomBar from '../../components/BottomBar';
+import { Link } from 'expo-router';
 
 const navigation = [{title: 'All'},{title: 'Unpaid'},{title: 'To Ship'},{title: 'Shipped'}]
 
@@ -14,7 +15,9 @@ export default function Order() {
   return (
     <View style={{flex: 1}}>
       <TopBar>
-        <AntDesign name="arrowleft" size={30} color="white" />
+        <Link href={'/Profile/Profile'}>
+          <AntDesign name="arrowleft" size={30} color="white" />
+        </Link>
         <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>My Orders</Text>
         <Text></Text>
       </TopBar>

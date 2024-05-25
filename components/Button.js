@@ -4,9 +4,9 @@ import React from 'react'
 export default function Button(props) {
   return (
     <View style={styles.container}>
-        <Pressable style={styles.button}>
+        <View style={styles.button}>
             <Text style={styles.label}>{props.children}</Text>
-        </Pressable>
+        </View>
     </View>
   )
 }

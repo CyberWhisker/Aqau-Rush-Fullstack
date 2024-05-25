@@ -1,12 +1,19 @@
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
-import OnboardingImg from '../../assets/images/onboarding3.png'
+import OnboardingImg from '../../assets/images/onboarding2.png'
 import { globalStyles } from '../../styles/global'
 import Button from '../../components/Button'
+import { AntDesign } from '@expo/vector-icons';
+import { Link } from 'expo-router'
 
-const Onboarding3 = () => {
+const Onboarding2 = () => {
   return (
     <View style={styles.container}>
+        <View style={{backgroundColor: 'white', padding: 10, width: '100%', position: 'absolute', top: 50, zIndex: 1, justifyContent: 'flex-end', flexDirection: 'row'}}>
+          <Link href={'/Onboarding/Onboarding1'}>
+            <AntDesign name="arrowleft" size={30} color="#6796DC" />
+          </Link>
+        </View>
         <Image source={OnboardingImg}/>
         <View style={styles.section1}>
           <Text style={globalStyles.font1}>We provide best quality water </Text>
@@ -17,12 +24,14 @@ const Onboarding3 = () => {
         <View style={styles.section3}>
           <View style={styles.progress}>
             <View style={styles.bar1}></View>
-            <View style={styles.bar1}></View>
             <View style={styles.active}></View>
+            <View style={styles.bar1}></View>
           </View>
         </View>
         <View style={styles.section4}>
-          <Button>Next</Button>
+          <Link href={'/Onboarding/Onboarding3'}>
+            <Button>Next</Button>
+          </Link>
         </View>
     </View>
   )
@@ -32,6 +41,7 @@ const {height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         paddingTop: 50,
         alignItems: 'center',
         paddingHorizontal: 20,
@@ -69,4 +79,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Onboarding3
+export default Onboarding2

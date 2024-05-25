@@ -3,22 +3,23 @@ import React from 'react'
 import TopBar from '../../components/TopBar'
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import ProfileImg from '../../assets/images/profile.jpg';
-import BottomBar from '../../components/BottomBar';
+import BottomBar from '../../components/BottomBarId';
+import { Link } from 'expo-router';
 
 const navList = [
-    { title: 'My Orders'}, 
-    { title: 'My address'},
-    { title: 'About'},
-    { title: 'Terms & Conditions'},
-    { title: 'Privacy & Policy'},
-    { title: 'Health & Support'},
-    { title: 'Log out'}]
+    { title: 'My Orders', link: '/Order/Order'}, 
+    { title: 'My address', link: '/Address/Address'},
+    { title: 'About', link: '/About/About'},
+    { title: 'Terms & Conditions', link: '/Terms/Terms'},
+    { title: 'Privacy & Policy', link: '/Privacy/Privacy'},
+    { title: 'Health & Support', link: '/Support/Support'},
+    { title: 'Log out', link: '/Welcome/Welcome'}]
 
 export default function Profile() {
   return (
     <View style={{flex: 1}}>
         <TopBar>
-            <AntDesign name="arrowleft" size={30} color="white" />
+            <Text></Text>
             <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Profile</Text>
             <Text></Text>
         </TopBar>
@@ -42,12 +43,14 @@ function Navigation() {
     return (
         <View style={{backgroundColor: '#EDE8E8', borderRadius: 10}}>
             {navList.map((item, index) => (
-                <View key={index} style={{padding: 10}}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, paddingVertical: 3}}>
-                        <Text>{item.title}</Text>
-                        <MaterialCommunityIcons name="greater-than" size={24} color="black" />
+                <Link href={item.link} key={index}>
+                    <View style={{padding: 10, width: 350}}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, paddingVertical: 3}}>
+                            <Text>{item.title}</Text>
+                            <MaterialCommunityIcons name="greater-than" size={24} color="black" />
+                        </View>
                     </View>
-                </View>
+                </Link>
             ))}
 
         </View>

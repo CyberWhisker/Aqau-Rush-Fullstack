@@ -2,6 +2,7 @@
   "expo": {
     "name": "Aqua-Rush",
     "slug": "Aqua-Rush",
+    "scheme": "Aqua-Rush",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

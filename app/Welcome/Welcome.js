@@ -3,6 +3,7 @@ import React from 'react'
 import WelcomeImg from '../../assets/images/welcome.jpg'
 import { globalStyles } from '../../styles/global'
 import Button from '../../components/Button'
+import { Link } from 'expo-router'
 
 export default function Welcome() {
   return (
@@ -15,15 +16,19 @@ export default function Welcome() {
         <Text style={globalStyles.font2}>Water Delivery app</Text>
       </View>
       <View style={styles.section2}>
-        <Button>CREATE AN ACCOUNT</Button>
+        <Link href={'/Auth/Register'}>
+          <Button>CREATE AN ACCOUNT</Button>
+        </Link>
       </View>
       <View  style={styles.section2}>
-        <Button>CREATE AN ACCOUNT</Button>
+        <Link href={'/Auth/Login'}>
+          <Button>LOG IN</Button>
+        </Link>
       </View>
       <View style={styles.section2}>
-        <Pressable>
+          <Link href={'/Home/Home'}>
             <Text>Continue as Guest</Text>
-        </Pressable>
+          </Link>
       </View>
     </View>
   )

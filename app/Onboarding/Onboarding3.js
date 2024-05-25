@@ -1,12 +1,19 @@
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
-import OnboardingImg from '../../assets/images/onboarding1.png'
+import OnboardingImg from '../../assets/images/onboarding3.png'
 import { globalStyles } from '../../styles/global'
 import Button from '../../components/Button'
+import { Link } from 'expo-router'
+import { AntDesign } from '@expo/vector-icons';
 
-const Onboarding1 = () => {
+const Onboarding3 = () => {
   return (
     <View style={styles.container}>
+        <View style={{backgroundColor: 'white', padding: 10, width: '100%', position: 'absolute', top: 30, zIndex: 1, justifyContent: 'flex-end', flexDirection: 'row'}}>
+          <Link href={'/Onboarding/Onboarding2'}>
+            <AntDesign name="arrowleft" size={30} color="#6796DC" />
+          </Link>
+        </View>
         <Image source={OnboardingImg}/>
         <View style={styles.section1}>
           <Text style={globalStyles.font1}>We provide best quality water </Text>
@@ -16,13 +23,15 @@ const Onboarding1 = () => {
         </View>
         <View style={styles.section3}>
           <View style={styles.progress}>
+            <View style={styles.bar1}></View>
+            <View style={styles.bar1}></View>
             <View style={styles.active}></View>
-            <View style={styles.bar1}></View>
-            <View style={styles.bar1}></View>
           </View>
         </View>
         <View style={styles.section4}>
-          <Button>Next</Button>
+          <Link href={'/Welcome/Welcome'}>
+            <Button>Next</Button>
+          </Link>
         </View>
     </View>
   )
@@ -38,16 +47,16 @@ const styles = StyleSheet.create({
         height: height,
     },
     section1: {
-      marginTop: 10
+      marginTop: 20
     },
     section2: {
-      marginTop: 20,
+      marginTop: 20
     },
     section3: {
       marginTop: 40
     },
     section4: {
-      marginTop: 100
+      marginTop: 80
     },
     bar1: {
       flex: 1,
@@ -69,4 +78,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Onboarding1
+export default Onboarding3

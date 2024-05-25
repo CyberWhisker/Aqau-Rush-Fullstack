@@ -3,6 +3,7 @@ import React from 'react'
 import TopBar from '../../components/TopBar'
 import { AntDesign, Entypo, MaterialIcons } from '@expo/vector-icons';
 import BottomBar from '../../components/BottomBar';
+import { Link } from 'expo-router';
 
 const statuses = [
     { label: 'Order Made', icon: 'receipt', description: 'Your order has been confirmed' },
@@ -15,7 +16,9 @@ export default function Track() {
   return (
     <View style={{flex: 1}}>
         <TopBar>
-            <AntDesign name="arrowleft" size={30} color="white" />
+            <Link href={'/Profile/Profile'}>
+                <AntDesign name="arrowleft" size={30} color="white" />
+            </Link>
             <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Track Order</Text>
             <Text></Text>
         </TopBar>
@@ -39,7 +42,7 @@ export default function Track() {
                 </View>
             </View>
             <View style={{textAlign: 'center'}}>
-                <OrderStatus/>
+                <OrderStatus currentStatusIndex={1}/>
             </View>
         </ScrollView>
         <BottomBar></BottomBar>

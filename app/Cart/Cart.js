@@ -5,12 +5,15 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import Data from './data.json';
 import HomeItem from '../../assets/images/item.jpg';
 import Button2 from '../../components/Button2';
+import { Link } from 'expo-router';
 
 export default function Cart() {
   return (
     <View style={{flex: 1}}>
       <TopBar>
-        <AntDesign name="arrowleft" size={30} color="white" />
+        <Link href={'/Home/Home'}>
+            <AntDesign name="arrowleft" size={30} color="white" />
+        </Link>
         <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 30, color: 'white'}}>Shopping cart</Text>
         <Text style={{fontFamily: 'Poppins', fontWeight: '700', fontSize: 15, color: 'white'}}>Edit</Text>
       </TopBar>
@@ -69,10 +72,39 @@ function Checkout() {
             </Pressable>
             <Text style={{flex: 1, fontFamily: 'Poppins', fontWeight: '600', fontSize: 17, textAlign: 'center'}}>₱ 70.00</Text>
             <View style={{flex: 1}}>
-                <Button2>Checkout</Button2>
+                <Link href={'/Checkout/Checkout'}>
+                    <ButtonStyle>Checkout</ButtonStyle>
+                </Link>
             </View>
         </View>
     );
 }
 
-const styles = StyleSheet.create({})
+function ButtonStyle(props) {
+    return(
+        <View style={styles.container}>
+            <View style={styles.button}>
+                <Text style={styles.label}>{props.children}</Text>
+            </View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        width: 120,
+        alignItems: 'center',
+    },
+    button: {
+        paddingVertical: 10,
+        width: '100%',
+        backgroundColor: '#6796DC',
+        borderRadius: 20
+    },
+    label: {
+        fontSize: 12,
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    }
+})
