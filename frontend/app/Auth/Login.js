@@ -4,6 +4,7 @@ import { globalStyles } from '../../styles/global';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Link, useRouter } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -15,7 +16,7 @@ export default function Login() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://192.168.1.7:4000/auth/login', {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

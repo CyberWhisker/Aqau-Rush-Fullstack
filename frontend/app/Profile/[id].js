@@ -5,6 +5,7 @@ import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import ProfileImg from '../../assets/images/profile.jpg';
 import BottomBar from '../../components/BottomBarId';
 import { Link, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 export default function Profile() {
     // const { id } = useLocalSearchParams();
@@ -17,7 +18,7 @@ export default function Profile() {
 
     const fetchData = async (userId) => {
         try {
-            const response = await fetch(`http://192.168.1.7:4000/user/${id}`, {
+            const response = await fetch(`${API_URL}/user/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'

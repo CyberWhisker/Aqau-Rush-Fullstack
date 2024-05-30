@@ -20,7 +20,7 @@ const getData = async (req, res) => {
 }
 
 const store = async (req, res) => {
-    const {name, password, email, address, phone} = req.body
+    const {name, password, email, address, phone, user_type} = req.body
 
     try {
         const data = await Data.create({
@@ -28,7 +28,8 @@ const store = async (req, res) => {
             password,
             email,
             address,
-            phone
+            phone,
+            user_type
         })
         res.status(200).json(data)
     } catch (error) {

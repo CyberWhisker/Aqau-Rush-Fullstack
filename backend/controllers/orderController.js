@@ -4,10 +4,32 @@ const UserModel = require('../models/userModel')
 const ReviewModel = require('../models/reviewModel')
 const mongoose =require('mongoose')
 
-const getAllData = async(req, res) => {
-    const data = await Data.find({})
-    res.status(200).json(data)
-}
+const getAllData = async (req, res) => {
+    try {
+      // Fetch all data from the Data model
+      const data = await Data.find({});
+  
+      // Extract unique item IDs and user IDs from the data
+      const itemIds = [...new Set(data.map(item => item.itemId))];
+      const userIds = [...new Set(data.map(item => item.userId))];
+  
+      // Fetch item details using the extracted item IDs
+      const itemData = await ItemModel.find({ _id: { $in: itemIds } });
+      const userData = await UserModel.find({ _id: { $in: userIds } });
+  
+      // Combine data with item and user details
+      const combinedData = data.map(item => {
+        const itemDetail = itemData.find(i => i._id.toString() === item.itemId.toString());
+        const userDetail = userData.find(u => u._id.toString() === item.userId.toString());
+        return { ...item.toObject(), itemDetail, userDetail };
+      });
+  
+      res.status(200).json(combinedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
 
 const getDataById = async(req, res) => {
     const { id } = req.params;
@@ -69,10 +91,11 @@ const getData = async (req, res) => {
 
 
 const store = async (req, res) => {
+    const order_status = 0
     const {userId, itemId, quantity, date, time, status, price} = req.body
 
     try {
-        const data = await Data.create({userId, itemId, quantity, date, time, status, price})
+        const data = await Data.create({userId, itemId, quantity, date, time, status, price, order_status})
         res.status(200).json(data)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -1,55 +1,116 @@
 import {
-  BanknotesIcon,
-  UserPlusIcon,
   UsersIcon,
-  ChartBarIcon,
+  Square3Stack3DIcon,
+  ArrowPathRoundedSquareIcon,
+  TableCellsIcon,
 } from "@heroicons/react/24/solid";
 
-export const statisticsCardsData = [
-  {
-    color: "gray",
-    icon: BanknotesIcon,
-    title: "Today's Money",
-    value: "$53k",
-    footer: {
-      color: "text-green-500",
-      value: "+55%",
-      label: "than last week",
+const handleFetchUser = async () => {
+  const response = await fetch('http://localhost:4000/user', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  },
-  {
-    color: "gray",
-    icon: UsersIcon,
-    title: "Today's Users",
-    value: "2,300",
-    footer: {
-      color: "text-green-500",
-      value: "+3%",
-      label: "than last month",
-    },
-  },
-  {
-    color: "gray",
-    icon: UserPlusIcon,
-    title: "New Clients",
-    value: "3,462",
-    footer: {
-      color: "text-red-500",
-      value: "-2%",
-      label: "than yesterday",
-    },
-  },
-  {
-    color: "gray",
-    icon: ChartBarIcon,
-    title: "Sales",
-    value: "$103,430",
-    footer: {
-      color: "text-green-500",
-      value: "+5%",
-      label: "than yesterday",
-    },
-  },
-];
+  });
 
-export default statisticsCardsData;
+  const data = await response.json();
+  return data.length; // Return the length of the fetched data
+};
+
+const handleFetchItem = async () => {
+  const response = await fetch('http://localhost:4000/item', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  return data.length; // Return the length of the fetched data
+};
+
+const handleFetchOrder = async () => {
+  const response = await fetch('http://localhost:4000/order', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  return data.length; // Return the length of the fetched data
+};
+
+const handleFetchPendingOrder = async () => {
+  let filtered = []
+  const response = await fetch('http://localhost:4000/order', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  data.map((item) => {
+    if (item.order_status == 0) {
+      filtered.push(item)
+    }
+  })
+  return filtered.length; // Return the length of the fetched data
+};
+
+export const getStatisticsCardsData = async () => {
+  const usersCount = await handleFetchUser();
+  const itemCount = await handleFetchItem();
+  const itemOrder = await handleFetchOrder();
+  const PendingOrder = await handleFetchPendingOrder();
+
+  return [
+    {
+      color: "gray",
+      icon: UsersIcon,
+      title: "Users",
+      value: usersCount.toString(),
+      footer: {
+        color: "text-green-500",
+        value: "Connected",
+        label: "MongoDB Atlas",
+      },
+    },
+    {
+      color: "gray",
+      icon: Square3Stack3DIcon,
+      title: "Total Items",
+      value: itemCount.toString(),
+      footer: {
+        color: "text-green-500",
+        value: "Connected",
+        label: "MongoDB Atlas",
+      },
+    },
+    {
+      color: "gray",
+      icon: ArrowPathRoundedSquareIcon,
+      title: "Pending Orders",
+      value: PendingOrder,
+      footer: {
+        color: "text-green-500",
+        value: "Connected",
+        label: "MongoDB Atlas",
+      },
+    },
+    {
+      color: "gray",
+      icon: TableCellsIcon,
+      title: "Total Orders",
+      value: itemOrder,
+      footer: {
+        color: "text-green-500",
+        value: "Connected",
+        label: "MongoDB Atlas",
+      },
+    },
+  ];
+};
+
+export default getStatisticsCardsData;

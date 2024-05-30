@@ -29,6 +29,9 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     }, 
+    order_status: {
+        type: Number,
+    }, 
     
 }, {timestamps: true})
 

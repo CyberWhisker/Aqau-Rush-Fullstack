@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import SuccessImage from '../../assets/images/success.jpg';
 import Button from '../../components/Button';
 import { Link, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 const handleFetch = async (userId, setCartData) => {
     try {
-        const response = await fetch(`http://192.168.1.7:4000/order/${userId}`, {
+        const response = await fetch(`${API_URL}/order/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

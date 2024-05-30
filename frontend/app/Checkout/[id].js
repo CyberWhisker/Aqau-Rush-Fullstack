@@ -5,11 +5,12 @@ import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import HomeItem from '../../assets/images/item.jpg';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 const handleFetch = async (id, setCartData, setTotalPrice, setUserData) => {
     let total = 0;
     try {
-        const response = await fetch(`http://192.168.1.7:4000/cart/${id}`, {
+        const response = await fetch(`${API_URL}/cart/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +26,7 @@ const handleFetch = async (id, setCartData, setTotalPrice, setUserData) => {
         console.error('Error fetching data:', error);
     }
     try {
-        const response = await fetch(`http://192.168.1.7:4000/user/${id}`, {
+        const response = await fetch(`${API_URL}/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +45,7 @@ const handleSubmit = async (cartData, time, date, setCartData, setTotalPrice, se
     try {
         // Submit each cart item as an order
         for (const item of cartData) {
-            const response = await fetch(`http://192.168.1.7:4000/order`, {
+            const response = await fetch(`${API_URL}/order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -74,7 +75,7 @@ const handleSubmit = async (cartData, time, date, setCartData, setTotalPrice, se
 
 const handleDelete = async (cartId, userId) => {
     try {
-        await fetch(`http://192.168.1.7:4000/cart/${cartId}`, {
+        await fetch(`${API_URL}/cart/${cartId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

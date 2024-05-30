@@ -9,10 +9,11 @@ import HomeItem from '../../assets/images/item.jpg';
 import BottomBar from '../../components/BottomBar';
 import { Link, useLocalSearchParams } from 'expo-router';
 import BottomBarId from '../../components/BottomBarId';
+import { API_URL } from '@env'; // Import the environment variable
 
 const handleSubmit = async (userId, itemId) => {
   try {
-      const response = await fetch('http://192.168.1.7:4000/cart', {
+      const response = await fetch(`${API_URL}/cart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -43,7 +44,7 @@ const handleSubmit = async (userId, itemId) => {
 
 const handleFetch = async (userId, setOrderData) => {
   try {
-      const response = await fetch(`http://192.168.1.7:4000/order/${userId}`, {
+      const response = await fetch(`${API_URL}/order/${userId}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json'
@@ -61,7 +62,7 @@ const handleFetch = async (userId, setOrderData) => {
 const updateReview = async (id, rating) => {
   console.log(id, rating)
   try {
-    const response = await fetch(`http://192.168.1.7:4000/review/${id}`, {
+    const response = await fetch(`${API_URL}/review/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -175,7 +176,7 @@ function List({orderData, active, setOrderData }) {
   const submitReview = async (userId, itemId, review, rating, reviewData) => {
     if (reviewData === undefined) {
       try {
-        const response = await fetch(`http://192.168.1.7:4000/review`, {
+        const response = await fetch(`${API_URL}/review`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -217,19 +218,19 @@ function List({orderData, active, setOrderData }) {
   useEffect(() => {
     if (active == 0) {
       setFilter(0) 
-      setSecondFilter(1) 
+      setSecondFilter(3) 
     }
     if (active == 1) {
       setFilter(0) 
-      setSecondFilter(1) 
+      setSecondFilter(2) 
     }
     if (active == 2) {
-      setFilter(3) 
-      setSecondFilter(3) 
+      setFilter(2) 
+      setSecondFilter(2) 
     }
     if (active == 3) {
-      setFilter(4) 
-      setSecondFilter(4) 
+      setFilter(3) 
+      setSecondFilter(3) 
     }
   },[active])
   
@@ -240,7 +241,7 @@ function List({orderData, active, setOrderData }) {
   } else {
     return(
       <>
-        {orderData.filter(item => item.status == filter || item.status == secondFilter).map((item, index) => (
+        {orderData.filter(item => item.status >= filter && item.status <= secondFilter).map((item, index) => (
           <>
             <View style={{marginTop: 30}} key={index}>
               <View style={{justifyContent: 'flex-end', flexDirection: 'row'}}>

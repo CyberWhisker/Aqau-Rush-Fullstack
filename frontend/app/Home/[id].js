@@ -10,6 +10,7 @@ import Data from './data.json';
 import BottomBarId from '../../components/BottomBarId';
 import { useLocalSearchParams } from 'expo-router';
 import BottomBar from '../../components/BottomBar';
+import { API_URL } from '@env'; // Import the environment variable
 
 export default function Home() {
     const { id } = useLocalSearchParams();
@@ -24,7 +25,7 @@ export default function Home() {
 
     const fetchUser = async (userId) => {
         try {
-            const response = await fetch(`http://192.168.1.7:4000/user/${id}`, {
+            const response = await fetch(`${API_URL}/user/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -37,7 +38,7 @@ export default function Home() {
     };
     const fetchItem = async () => {
         try {
-            const response = await fetch(`http://192.168.1.7:4000/item`, {
+            const response = await fetch(`${API_URL}/item`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -50,7 +51,7 @@ export default function Home() {
     };
     const handleSubmit = async (userId, itemId) => {
         try {
-            const response = await fetch('http://192.168.1.7:4000/cart', {
+            const response = await fetch(`${API_URL}/cart`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

@@ -4,6 +4,7 @@ import { globalStyles } from '../../styles/global';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Link, useRouter } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch('http://192.168.1.7:4000/user', {
+      const response = await fetch(`${API_URL}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

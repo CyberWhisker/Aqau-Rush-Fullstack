@@ -12,6 +12,13 @@ const cors = require('cors');
 
 const app = express();
 
+// Registered Device only
+app.use(cors({
+    origin: '*', // Allow all origins for development
+    methods: 'GET,POST,PUT,DELETE,PATCH',
+    allowedHeaders: 'Content-Type,Authorization'
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,7 +30,7 @@ app.use('/review', reviewRoute);
 
 app.use('/order', orderRoute);
 
-app.use(cors())
+
 
 
 mongoose.connect(process.env.MONGO_URI)

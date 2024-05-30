@@ -5,6 +5,7 @@ import { AntDesign, Entypo, MaterialIcons } from '@expo/vector-icons';
 import BottomBar from '../../components/BottomBar';
 import BottomBarId from '../../components/BottomBarId';
 import { Link, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 const statuses = [
     { label: 'Order Made', icon: 'receipt', description: 'Your order has been confirmed' },
@@ -16,7 +17,7 @@ const statuses = [
 
   const handleFetch = async (orderId, setOrderData) => {
     try {
-        const response = await fetch(`http://192.168.1.7:4000/order/single/${orderId}`, {
+        const response = await fetch(`${API_URL}/order/single/${orderId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -79,7 +80,7 @@ export default function Track() {
                 </View>
             </View>
             <View style={{textAlign: 'center'}}>
-                <OrderStatus currentStatusIndex={orderData.status}/>
+                <OrderStatus currentStatusIndex={orderData.status} orderStatus={orderData.order_status}/>
             </View>
         </ScrollView>
         {id == 'undefined' ? (
@@ -91,48 +92,56 @@ export default function Track() {
   )
 }
 
-function OrderStatus({ currentStatusIndex }) {
+function OrderStatus({ currentStatusIndex, orderStatus }) {
     return (
         <View style={styles.container}>
-            {statuses.map((status, index) => (
-            <View key={index} style={styles.statusContainer}>
-                <View style={styles.iconContainer}>
-                    <MaterialIcons
-                        name={status.icon}
-                        size={24}
-                        color={index <= currentStatusIndex ? '#3FBDF1' : '#CCC'}
-                    />
-                </View>
-                <View style={styles.textContainer}>
-                    <Text
-                        style={[
-                        styles.statusText,
-                        index <= currentStatusIndex && styles.activeStatusText,
-                        ]}
-                    >
-                        {status.label}
-                    </Text>
-                    <Text
-                        style={[
-                        styles.statusText,
-                        index <= currentStatusIndex && styles.activeStatusText,
-                        ]}
-                    >
-                        {status.description}
-                    </Text>
-                </View>
-                {index < statuses.length - 1 && (
-                <View style={styles.lineContainer}>
-                    <View
-                    style={[
-                        styles.line,
-                        index < currentStatusIndex && styles.activeLine,
-                    ]}
-                    />
-                </View>
-                )}
-            </View>
-            ))}
+            {orderStatus != 0 ?
+            (
+                <>
+                {statuses.map((status, index) => (
+                    <View key={index} style={styles.statusContainer}>
+                        <View style={styles.iconContainer}>
+                            <MaterialIcons
+                                name={status.icon}
+                                size={24}
+                                color={index <= currentStatusIndex ? '#3FBDF1' : '#CCC'}
+                            />
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text
+                                style={[
+                                styles.statusText,
+                                index <= currentStatusIndex && styles.activeStatusText,
+                                ]}
+                            >
+                                {status.label}
+                            </Text>
+                            <Text
+                                style={[
+                                styles.statusText,
+                                index <= currentStatusIndex && styles.activeStatusText,
+                                ]}
+                            >
+                                {status.description}
+                            </Text>
+                        </View>
+                        {index < statuses.length - 1 && (
+                        <View style={styles.lineContainer}>
+                            <View
+                            style={[
+                                styles.line,
+                                index < currentStatusIndex && styles.activeLine,
+                            ]}
+                            />
+                        </View>
+                        )}
+                    </View>
+                ))}
+                </>
+            ):(
+                <Text style={{fontSize: 30, fontFamily: 'Poppins-Bold', color:'red'}}>Pending....</Text>
+            )}
+            
         </View>
     );
 }

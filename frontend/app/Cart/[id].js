@@ -5,10 +5,11 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import HomeItem from '../../assets/images/item.jpg';
 import Button2 from '../../components/Button2';
 import { Link, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'; // Import the environment variable
 
 const handleUpdate = async (cartId, quantity, fetchCart) => {
     try {
-        const response = await fetch(`http://192.168.1.7:4000/cart/${cartId}`, {
+        const response = await fetch(`${API_URL}/cart/${cartId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +28,7 @@ const handleUpdate = async (cartId, quantity, fetchCart) => {
 
 const handleDelete = async (cartId, fetchCart) => {
     try {
-        const response = await fetch(`http://192.168.1.7:4000/cart/${cartId}`, {
+        const response = await fetch(`${API_URL}/cart/${cartId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +56,7 @@ export default function Cart() {
     const fetchCart = async () => {
         let total = 0
         try {
-            const response = await fetch(`http://192.168.1.7:4000/cart/${id}`, {
+            const response = await fetch(`${API_URL}/cart/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
